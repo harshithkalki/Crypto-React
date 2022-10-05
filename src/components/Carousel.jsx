@@ -8,15 +8,19 @@ import { Link } from 'react-router-dom';
 
 const Carousel = () => {
     const [trend,settrent]=React.useState([]);
-    const {cur}=CryptoState();
+    const {cur , sym}=CryptoState();
     const fetchTrendingCoins=async()=>{
         const {data} = await axios.get(TrendingCoins(cur));
         settrent(data);
     }
     useEffect(()=>{
         fetchTrendingCoins();
-    },[cur])
-    console.log(trend)
+    },[cur]);
+    // console.log(trend)
+
+   const numberWithCommas=(x)=>{
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+    }
 
     const items=trend.map((coin)=>{
         let profit = coin?.price_change_percentage_24h >= 0;
@@ -36,6 +40,10 @@ const Carousel = () => {
             {profit && "+"}
             {coin?.price_change_percentage_24h?.toFixed(2)}%
           </span></span>
+          <br />
+          <span style={{fontSize:22 ,fontWeight: 500}}>
+            {sym} {numberWithCommas(coin?.current_price.toFixed(2))}
+          </span>
                 </Link>
             </Flex>
     )})
