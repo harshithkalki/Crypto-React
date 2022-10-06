@@ -41,7 +41,7 @@ const Carousel = () => {
             {coin?.price_change_percentage_24h?.toFixed(2)}%
           </span></span>
           <br />
-          <span style={{fontSize:22 ,fontWeight: 500}}>
+          <span style={{fontSize:18 ,fontWeight: 400}}>
             {sym} {numberWithCommas(coin?.current_price.toFixed(2))}
           </span>
                 </Link>
