@@ -1,4 +1,4 @@
-import { Box, Heading, TableContainer, Thead ,Tbody, Tr,Th, Table, Td , Img ,Flex , useMediaQuery , Text} from '@chakra-ui/react';
+import { Box, Heading, TableContainer, Thead ,Tbody, Tr,Th, Table, Td , Img ,Flex , useMediaQuery , Text , Progress} from '@chakra-ui/react';
 import axios from 'axios';
 import React from 'react';
 import { CoinList } from '../config/api';
@@ -41,6 +41,7 @@ const items=coins.map((coin)=>{
             }}>{coin?.price_change_percentage_24h.toFixed(3)} %</span></Td>
         <Td>{sym} {numberWithCommas(coin?.market_cap)}</Td>
         </Tr>
+        
     )
 })
 
@@ -53,6 +54,7 @@ const items=coins.map((coin)=>{
     
 
     <TableContainer width="90vw">
+    {loading ?( <Progress size='xs' isIndeterminate /> ):
         <Table>
         <Thead bgColor="#1bc7d3" color="blackAlpha.100" height="8vh">
             <Tr>
@@ -64,7 +66,7 @@ const items=coins.map((coin)=>{
         </Thead>
         <Tbody>{items}
         </Tbody>
-        </Table>
+        </Table>}
     </TableContainer>
     </Flex>
     {/* </Box> */}
