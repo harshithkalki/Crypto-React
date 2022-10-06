@@ -82,19 +82,10 @@ const items=coins.map((coin)=>{
         </Tbody>
         </Table>}
     </TableContainer>
-    <Flex mt="10vh" width="10vw" justifyContent="space-between">
+    <Flex mt="10vh" width={isNotSmallerScreen?"10vw":"30vw"} justifyContent="space-between" mb="10vh">
         <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==1)?prev-1:1))} icon={<GrFormPrevious />}></IconButton>
         <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==items.length / 10)?prev + 1:items.length/10))}  icon={<GrFormNext />}></IconButton>
     </Flex>
-
-    {/* <Pagination count={(items?.length)}></Pagination> */}
-   
-    {/* <Pagination pagesCount={items?.length /10} currentPage={page} on>
-
-    </Pagination> */}
-    {/* <Pagination postsPerPage={10}
-        totalPosts={items.length}
-        paginate={paginate} /> */}
     </Flex>
     </>
       )
