@@ -1,14 +1,26 @@
-import { Box, Heading, TableContainer, Thead ,Tbody, Tr,Th, Table, Td , Img ,Flex , useMediaQuery , Text , Progress} from '@chakra-ui/react';
+import { Box, Heading, TableContainer,
+        Thead ,Tbody,Tr,Th, Table, Td,
+        Img ,Flex , useMediaQuery ,
+         Text , Progress , useColorMode, IconButton
+         } from '@chakra-ui/react';
+import { GrFormPrevious , GrFormNext} from "react-icons/gr";
 import axios from 'axios';
 import React from 'react';
 import { CoinList } from '../config/api';
 import {CryptoState} from '../CryptoContext';
+import { useNavigate} from 'react-router-dom';
+
 
 const CoinsTable = () => {
  const [coins,setcoins]=React.useState([]);
+ const {colorMode,toggleColorMode}=useColorMode();
+ const [page,setpage]=React.useState(1);
+ const isDark=colorMode==="dark";
  const [loading,setLoad]=React.useState(false);
  const {cur,sym}=CryptoState();
- const [isNotSmallerScreen]=useMediaQuery("(min-width:600px)")
+ const [isNotSmallerScreen]=useMediaQuery("(min-width:600px)");
+ const navigate = useNavigate();
+//  const paginate = pageNumber => setpage(pageNumber);
 
  const fetchData= async ()=>{
     setLoad(true);
@@ -26,8 +38,10 @@ const CoinsTable = () => {
  },[cur])
 const items=coins.map((coin)=>{
     let profit = coin?.price_change_percentage_24h >= 0;
+    
     return(
-        <Tr>
+    
+        <Tr onClick={()=> navigate(`/coins/${coin.id}`)} _hover={isDark?{background: "gray.600"}:{background:"gray.300"}} cursor="pointer">
         <Td> <Flex> <Img src={coin?.image}
                         alt={coin.name}
                         height="5vh" mr="1.5vw"
@@ -39,7 +53,7 @@ const items=coins.map((coin)=>{
               color: profit > 0 ? "rgb(14, 203, 129)" : "red",
               fontWeight: 500,
             }}>{coin?.price_change_percentage_24h.toFixed(3)} %</span></Td>
-        <Td>{sym} {numberWithCommas(coin?.market_cap)}</Td>
+        <Td>{sym} {numberWithCommas(coin?.market_cap.toString().slice(0, -6))}M</Td>
         </Tr>
         
     )
@@ -64,12 +78,24 @@ const items=coins.map((coin)=>{
                 <Th color="black" fontSize="medium">Market Cap</Th>
             </Tr>
         </Thead>
-        <Tbody>{items}
+        <Tbody>{items.slice((page-1)*10,(page-1)*10+10)}
         </Tbody>
         </Table>}
     </TableContainer>
+    <Flex mt="10vh" width="10vw" justifyContent="space-between">
+        <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==1)?prev-1:1))} icon={<GrFormPrevious />}></IconButton>
+        <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==items.length / 10)?prev + 1:items.length/10))}  icon={<GrFormNext />}></IconButton>
     </Flex>
-    {/* </Box> */}
+
+    {/* <Pagination count={(items?.length)}></Pagination> */}
+   
+    {/* <Pagination pagesCount={items?.length /10} currentPage={page} on>
+
+    </Pagination> */}
+    {/* <Pagination postsPerPage={10}
+        totalPosts={items.length}
+        paginate={paginate} /> */}
+    </Flex>
     </>
       )
 }
