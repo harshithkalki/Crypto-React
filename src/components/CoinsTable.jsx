@@ -1,9 +1,10 @@
 import { Box, Heading, TableContainer,
         Thead ,Tbody,Tr,Th, Table, Td,
         Img ,Flex , useMediaQuery ,
-         Text , Progress , useColorMode, IconButton
+         Text , Progress , useColorMode, IconButton , useColorModeValue, color
          } from '@chakra-ui/react';
 import { GrFormPrevious , GrFormNext} from "react-icons/gr";
+// import { AiOutlineLeftCircle } from "react-icons/ai";
 import axios from 'axios';
 import React from 'react';
 import { CoinList } from '../config/api';
@@ -16,6 +17,7 @@ const CoinsTable = () => {
  const {colorMode,toggleColorMode}=useColorMode();
  const [page,setpage]=React.useState(1);
  const isDark=colorMode==="dark";
+//  const paginationBackground = useColorModeValue("gray.900", "gray.500")
  const [loading,setLoad]=React.useState(false);
  const {cur,sym}=CryptoState();
  const [isNotSmallerScreen]=useMediaQuery("(min-width:600px)");
@@ -83,8 +85,8 @@ const items=coins.map((coin)=>{
         </Table>}
     </TableContainer>
     <Flex mt="10vh" width={isNotSmallerScreen?"10vw":"30vw"} justifyContent="space-between" mb="10vh">
-        <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==1)?prev-1:1))} icon={<GrFormPrevious />}></IconButton>
-        <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==items.length / 10)?prev + 1:items.length/10))}  icon={<GrFormNext />}></IconButton>
+        <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==1)?prev-1:1))} icon={<GrFormPrevious /> } backgroundColor={isDark?"gray.400":"gray.500"}></IconButton>
+        <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==items.length / 10)?prev + 1:items.length/10))}  icon={<GrFormNext />} backgroundColor={isDark?"gray.400":"gray.500"}></IconButton>
     </Flex>
     </Flex>
     </>
