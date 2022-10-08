@@ -14,7 +14,7 @@ const Header = () => {
     // const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${cur}&order=market_cap_desc&per_page=${top}&page=1&sparkline=false`;
     const changecur=(e)=>{
         setcur(e.target.value);
-        console.log(cur);
+        // console.log(cur);
         e.preventDefault();
     }
     const navigate = useNavigate();

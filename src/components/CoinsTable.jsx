@@ -34,7 +34,7 @@ const CoinsTable = () => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
 }
 
- console.log(coins);
+//  console.log(coins);
  React.useEffect(()=>{
     fetchData();
  },[cur])
@@ -85,8 +85,8 @@ const items=coins.map((coin)=>{
         </Table>}
     </TableContainer>
     <Flex mt="10vh" width={isNotSmallerScreen?"10vw":"30vw"} justifyContent="space-between" mb="10vh">
-        <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==1)?prev-1:1))} icon={<GrFormPrevious /> } backgroundColor={isDark?"gray.400":"gray.500"}></IconButton>
-        <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==items.length / 10)?prev + 1:items.length/10))}  icon={<GrFormNext />} backgroundColor={isDark?"gray.400":"gray.500"}></IconButton>
+        <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==1)?prev-1:1))} icon={<GrFormPrevious /> } backgroundColor={isDark?"gray.500":"gray.400"}></IconButton>
+        <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==items.length / 10)?prev + 1:items.length/10))}  icon={<GrFormNext />} backgroundColor={isDark?"gray.500":"gray.400"}></IconButton>
     </Flex>
     </Flex>
     </>
