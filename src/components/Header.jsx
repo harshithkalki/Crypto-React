@@ -21,7 +21,7 @@ const Header = () => {
     return (
         <HStack pt="3"   pb="2vh" >
             <Flex justifyContent="space-between" >
-            <Heading pl={isNotSmallerScreen?"5vw":"5"}  onClick={()=> navigate('/')} cursor="pointer"><span style={{color:"#FFA500"}}>C</span>ryp<span style={{color:"#FFA500"}}>T</span>o </Heading>
+            <Heading pl={isNotSmallerScreen?"5vw":"5"}  onClick={()=> navigate('/')} cursor="pointer"><span style={{color:"rgb(100, 181, 246)"}}>C</span>ryp<span style={{color:"rgb(100, 181, 246)"}}>T</span>o </Heading>
             <Select width={isNotSmallerScreen?"7vw":"20vw"} ml={isNotSmallerScreen?"65vw":"15vw"} fontSize="xs" onChange={changecur} value={cur}>
             <option value="INR">INR</option>
             <option value="USD">USD</option>

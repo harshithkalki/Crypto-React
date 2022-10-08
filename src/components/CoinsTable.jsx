@@ -65,14 +65,14 @@ const items=coins.map((coin)=>{
     <>
     <Flex textAlign="center" mt={isNotSmallerScreen?"5vh":"5vh"} direction="column" alignItems="center">
     <Heading fontWeight="normal" mb="6vh">
-    <span style={{color:"#FFA500"}} >C</span>rypto<span style={{color:"#FFA500"}} >c</span>urrency Prices by Market Cap
+    <span style={{color:"rgb(100, 181, 246)"}} >C</span>rypto<span style={{color:"rgb(100, 181, 246)"}} >c</span>urrency Prices by Market Cap
     </Heading>
     
 
     <TableContainer width="90vw">
     {loading ?( <Progress size='xs' isIndeterminate /> ):
         <Table>
-        <Thead bgColor="#1bc7d3" color="blackAlpha.100" height="8vh">
+        <Thead bgColor="rgb(100, 181, 246)" color="blackAlpha.100" height="8vh">
             <Tr>
                 <Th color="black" fontSize="medium">Coin</Th>
                 <Th color="black" fontSize="medium">Price</Th>
@@ -84,7 +84,7 @@ const items=coins.map((coin)=>{
         </Tbody>
         </Table>}
     </TableContainer>
-    <Flex mt="10vh" width={isNotSmallerScreen?"10vw":"30vw"} justifyContent="space-between" mb="10vh">
+    <Flex mt="10vh" width={isNotSmallerScreen?"10vw":"30vw"} justifyContent="space-between" mb="10vh" >
         <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==1)?prev-1:1))} icon={<GrFormPrevious /> } backgroundColor={isDark?"gray.500":"gray.400"}></IconButton>
         <IconButton isRound="true" onClick={()=>setpage(prev=>((page !==items.length / 10)?prev + 1:items.length/10))}  icon={<GrFormNext />} backgroundColor={isDark?"gray.500":"gray.400"}></IconButton>
     </Flex>
