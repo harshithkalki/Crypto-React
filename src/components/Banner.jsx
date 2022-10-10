@@ -8,7 +8,7 @@ const Banner = () => {
     const isDark=colorMode==="dark";
   return (
     <Box  backgroundImage={isDark?"url('./dark.jpg')":"url('./dark.jpg')"}> {/* light.png */}
-        <Flex direction="column" pt="10vh" height="400" justifyitems="space-around" alignItems="center" >
+        <Flex direction="column" pt="10vh" height="55vh" justifyitems="space-around" alignItems="center" >
             <Flex justifyContent="space-around" alignContent="center" mb="10vh" >
             <Heading color="white" ><span style={{color:"rgb(100, 181, 246)"}} >T</span>rending <span style={{color:"rgb(100, 181, 246)"}}>C</span>oins</Heading>
             </Flex>
